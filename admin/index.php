@@ -214,6 +214,11 @@ $page = $page.'.php';
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="<?=url('admin/profile');?>">
+          <i class="bi bi-graph-up"></i> Update Profile
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="<?=url('admin/logout.php');?>">
           <i class="bi bi-graph-up"></i> Logout
         </a>

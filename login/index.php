@@ -2,9 +2,8 @@
 require_once "../connection.php";
 
 
-if(isset($_SESSION['user']) || $_SESSION['is_login'] =true){
+if(isset($_SESSION['user'])){
     header("Location: /bcanews/admin");
-    exit();
 }
 
 
@@ -48,6 +47,7 @@ if(!empty($_POST)){
             exit();
         }
     }
+
 }
 ?>
 <!DOCTYPE html>

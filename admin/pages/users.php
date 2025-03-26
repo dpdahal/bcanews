@@ -1,5 +1,6 @@
 <?php 
 $id=$_SESSION['user']['id'];
+
 $sql="SELECT * FROM users WHERE id!=$id ORDER BY id DESC";
 $response = mysqli_query($conn, $sql);
 ?>
