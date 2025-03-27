@@ -4,30 +4,23 @@ $id=$_SESSION['user']['id'];
 $sql="SELECT * FROM users WHERE id='$id'";
 $result=mysqli_query($conn,$sql);
 $user = mysqli_fetch_assoc($result);
-$errors=[
-    'name'=>'', 'email'=>'','gender'=>''
-];
-
-$old=[
-    'name'=>'', 'email'=>'', 'gender'=>''
-];
-
+$errors=['name'=>'', 'email'=>'','gender'=>''];
+$old=[  'name'=>'', 'email'=>'', 'gender'=>''];
 $old['name']=$user['name'];
 $old['email']=$user['email'];
 $old['gender']=$user['gender'];
-
 if(!empty($_POST)){
     $name = $_POST['name'];
     $gender = $_POST['gender'];
     $sql="UPDATE users SET name='$name', gender='$gender' WHERE id='$id'";
     $res = mysqli_query($conn,$sql);
     if($res){
+        $_SESSION['success']="Profile Updated Successfully";
         header('Location: /bcanews/admin/profile');
         exit();
     }else{
         echo "Error: ".mysqli_error($conn);
-    }
-    
+    }  
 }
 
 ?>
@@ -37,6 +30,7 @@ if(!empty($_POST)){
         <div class="col-md-12">
           <div class="dashboard-card p-3">
             <h2>Update Profile</h2>
+            <?= message() ?>
             <hr>
             <form action="" method="post">
                     <div class="form-group mb-2">
