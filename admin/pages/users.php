@@ -31,8 +31,9 @@ $response = mysqli_query($conn, $sql);
                         <td><?=$user['gender'];?></td>
                         <td><?=$user['image'];?></td>
                         <td>
-                    <a href="" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
-                    <a href="" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                    <a href="<?=url('admin/updateuser.php?uid='.$user['id'].'')?>" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                    <a href="<?=url('admin/userdelete.php?uid='.$user['id'].'')?>" 
+                    class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
                         </td>
                        
                     </tr>   
