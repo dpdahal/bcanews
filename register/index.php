@@ -10,6 +10,7 @@ $old=[
 ];
 
 if(!empty($_POST)){
+
    foreach($_POST as $key=>$value){
         if(empty($value)){
             $errors[$key]='This field is required';
@@ -35,10 +36,22 @@ if(!empty($_POST)){
         $errors['confirm_password']='Password does not match';
     }
 
+    $uploadLocation="../public/users";
+    $image="";
+    if(!empty($_FILES['image']['name'])){
+        $fileName=$_FILES['image']['name'];
+        $tmpName=$_FILES['image']['tmp_name'];
+        if(!move_uploaded_file($tmpName,$uploadLocation.'/'.$fileName)){
+            $errors['image']='Failed to upload image';
+        }else{
+            $image=$fileName;
+        }
+    }
+
     if(!array_filter($errors)){
         $gender = $_POST['gender'];
         $password = md5($password);
-        $sql = "INSERT INTO users(name,email,password,gender) VALUES('$name','$email','$password','$gender')";
+        $sql = "INSERT INTO users(name,email,password,gender,image)VALUES('$name','$email','$password','$gender','$image')";
         $result = mysqli_query($conn,$sql);
         if($result){
            $_SESSION['success']= "User registered successfully";
@@ -65,7 +78,7 @@ if(!empty($_POST)){
                 <h1>Register</h1>
             </div>
             <div class="col-md-12">
-                <form action="" method="post">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-2">
                         <label for="name">Name:
                             <span class='text-danger'><?= $errors['name'] ?></span>
@@ -111,6 +124,10 @@ if(!empty($_POST)){
                             <?=$old['gender']=='female'? 'selected': ''?>
                             >Female</option>
                         </select>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="image">Image</label>
+                        <input type="file" name='image' class='form-control' id='image'>
                     </div>
                     <div class="form-group mb-2">
                         <button class="btn btn-success w-100">Register</button>
