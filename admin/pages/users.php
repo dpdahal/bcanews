@@ -29,7 +29,11 @@ $response = mysqli_query($conn, $sql);
                         <td><?=$user['name'];?></td>
                         <td><?=$user['email'];?></td>
                         <td><?=$user['gender'];?></td>
-                        <td><?=$user['image'];?></td>
+                        <td>
+                            <img src="<?=url('public/users/'.$user['image'])?>"
+                            width="60"
+                             alt="">
+                        </td>
                         <td>
                     <a href="<?=url('admin/updateuser.php?uid='.$user['id'].'')?>" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i></a>
                     <a href="<?=url('admin/userdelete.php?uid='.$user['id'].'')?>" 

@@ -51,7 +51,8 @@ if(!empty($_POST)){
     if(!array_filter($errors)){
         $gender = $_POST['gender'];
         $password = md5($password);
-        $sql = "INSERT INTO users(name,email,password,gender,image)VALUES('$name','$email','$password','$gender','$image')";
+        $sql = "INSERT INTO users(name,email,password,gender,image)
+        VALUES('$name','$email','$password','$gender','$image')";
         $result = mysqli_query($conn,$sql);
         if($result){
            $_SESSION['success']= "User registered successfully";
